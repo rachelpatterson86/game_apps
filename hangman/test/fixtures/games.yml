@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  answer: MyString
+  turns: 1
+  guess: MyString
+  state: MyString
+
+two:
+  answer: MyString
+  turns: 1
+  guess: MyString
+  state: MyString
