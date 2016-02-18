@@ -1,2 +1,2 @@
 # game_apps
-Tic Tac Toe &amp; Hangman From Terminal to Web Apps!
+Tic Tac Toe &amp; Hangman; from Terminal to Web Apps!
