@@ -1,2 +1,11 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<!-- # <% File.open('lib/ascii_hangman_logo.txt','r') do |f1| %>
+#   <% while line = f1.gets %>
+#     <p><%= line %></p>
+#   <% end %>
+# <% end %> -->
+
+<%= render :file => 'lib/ascii_hangman_logo.txt' %>
+
+<h3>Welcome to Hangman. You know what to do!</h3>
+
+<%= button_to "Let's Get Started", games_path %>
