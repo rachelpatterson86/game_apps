@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     redirect_to @game
   end
 
-#TODO:
+#TODO: game_param how work..., why need to add :game?
   def update
     @game = Game.find(params[:id])
     #game_param = params.require(:game).permit(:guess)
@@ -18,6 +18,7 @@ class GamesController < ApplicationController
 #   game: {
   #   guess: 'x'
   # }
+  #contrast to this ex: http://guides.rubyonrails.org/action_controller_overview.html#parameters
     @game.guess << params[:game][:guess] #game_param
     @game.save
     redirect_to @game
@@ -25,6 +26,10 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    #prevents for from auto populating previous values of :guess.
+  #http://stackoverflow.com/questions/26435154/disable-autopopulate-of-select-fields-with-database-values-in-rails-4-edit-form
+  #Can call form data in the controller. Why is this possible. How does Rails know?
+    @game.guess.clear
   end
 
   def delete
