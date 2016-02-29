@@ -1,4 +1,13 @@
+<!-- loop shows previous guesses -->
+Letters Guessed:
+<% @guesses.each do |c| %>
+  <%= c %>
+<% end %>
+
+<!-- User sees how many turns are left in the game. -->
+Turns Left: <%=@game.turns%>
+
 <!-- form to intake a user's guess for the game instance -->
 <%= form_for @game do |f| %>
-Guess a letter! <%= f.text_field :guess %>
+  Guess a letter! <%= f.text_field :guess %>
 <% end %>
