@@ -10,4 +10,13 @@ class Game < ActiveRecord::Base
     word = words.sample
   end
 
+  def display_partial_word(ans,guess)
+    partial_word = ""
+    ans.each_char do |c|
+    guess.include?(c) ? partial_word << c : partial_word << '_'
+    partial_word << " "
+   end
+    partial_word
+  end
+
 end

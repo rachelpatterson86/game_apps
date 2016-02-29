@@ -19,8 +19,10 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    answer = @game.answer
     @guesses = @game.guess.dup
     @game.guess.clear
+    @partial_word = @game.display_partial_word(answer, @guesses)
   end
 
   def delete

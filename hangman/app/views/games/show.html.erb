@@ -1,11 +1,18 @@
+<!-- show partial word for the game -->
+<%=@game.answer %><br/>
+<%= @partial_word %>
+<br/><br/>
+
 <!-- loop shows previous guesses -->
 Letters Guessed:
 <% @guesses.each do |c| %>
   <%= c %>
 <% end %>
+<br/><br/>
 
 <!-- User sees how many turns are left in the game. -->
 Turns Left: <%=@game.turns%>
+<br/><br/>
 
 <!-- form to intake a user's guess for the game instance -->
 <%= form_for @game do |f| %>
