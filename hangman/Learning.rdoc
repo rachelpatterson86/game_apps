@@ -1,0 +1,89 @@
+This RB file will log all the discoveries I've learned about programming, Ruby
+and Rails for the Hangman Project. Nothing is too big or small to make mention.
+
+More detailed writeups for many of my insights can be found on my blog, Comedy
+of Exceptions, just look for the tag Hangman.
+http://comedyofexceptions.blogspot.com
+
+#1: Controllers: loads instances
+  Note: The controller *loads* the instance of the object to be manipulated and
+  saved by the model. The instances could also be displayed in the view.
+
+controller
+     def show
+       @game = Game.find(params[:id]) loads here -> displayed in show view
+       ...
+       @game.guess.clear
+     end
+
+view
+     <%= form_for @game do |f| %>
+       Guess a letter! <%= f.text_field :guess %>
+     <% end %>
+
+  ^prevents guess values/arr from being displayed in the view since the arr has
+  been cleared. This data is loaded BEFORE displayed in the show view.
+
+  View: form knows what @game is and it's attributes.
+  :guess attribute we care to update from the obj @game. Together it's @game.guess
+
+  controller loads the data aka which game to display -> clears the guess attribute
+  arr (this does not remove from db of course). then it's displayed in the show view
+  with the cleared out guess array so that the form does NOT show prior guesses.
+
+#2: .dup
+  A lot of array and hash methods are class methods. Therefore, if you create a
+  copy an an array and hash, the methods enacted on 1 version will affect another.
+
+    a = [1,2,3] #=> [1,2,3]
+    b = a #=> [1,2,3]
+    b.clear  #=> [] , this will also clear a
+    a  #=> []
+
+  .dup was used for GamesController#show. In one part of the show view
+  (the form), I did not @game.guess to appear since the form was for a user to
+  only input a guess. However, I wanted @game.guess to appear outside the form
+  since I want the user to know which characters they've already guessed. dup
+  lets this happen.
+
+    def show
+      @game = Game.find(params[:id])
+      @guesses = @game.guess.dup #will show outside the form if I call @guesses
+      @game.guess.clear #wont show values in the form b/c the arr has been cleared.
+    end
+
+##figure out the rails ways whenever thinking about what to do. know the philosophy.##
+
+#3 Insert data to serialize, Array attribute
+
+  Yes: @game.guess << params[:game][:guess]
+  No: @game.update(guess: << params[:guess]) b/c << not a method for this.
+
+#4 Getting params:
+
+  Params in general:
+    -params is an arr of stuff. typically qs and post params live in different buckets
+    -if it's not a qs, then its safe to say what object of guess needs to be
+    called.
+
+  params[:id] vs params[:game][:guess]
+
+  Game.find(params[:id]) :
+    A rails assumption. Calling an id, thus must be from the object, in Game.
+
+  params[:game][:guess] :
+    guess is a fiels of game.
+    need to know where :guess comes from so add :game. Without it, :guess is nil.
+    How the data is passed, thus having to call params this way.
+
+    game: {
+      guess: 'x'
+    }
+
+  Sample Code:
+
+    def update
+      @game = Game.find(params[:id])
+      @game.guess << params[:game][:guess]
+      ...
+    end
