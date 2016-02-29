@@ -14,6 +14,7 @@ class GamesController < ApplicationController
     @game.guess << params[:game][:guess] #game_param
     @game.turns -= 1
     @game.save
+    @game.game_over
     redirect_to @game
   end
 

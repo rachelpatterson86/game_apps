@@ -19,4 +19,12 @@ class Game < ActiveRecord::Base
     partial_word
   end
 
+  def game_over
+    self.turns.zero? || complete_word?(self.answer,self.guess)
+  end
+
+  def complete_word?(ans,guess)
+    ans.chars.all? { |c| guess.include?(c) }
+  end
+
 end

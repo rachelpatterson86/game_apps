@@ -18,3 +18,5 @@ Turns Left: <%=@game.turns%>
 <%= form_for @game do |f| %>
   Guess a letter! <%= f.text_field :guess %>
 <% end %>
+
+<%=@game.game_over %>
