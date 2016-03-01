@@ -11,9 +11,9 @@ class GamesController < ApplicationController
   def update
     #validation: perhaps add temp variables. rails form w/o saving into the db. for validating guess.
     @game = Game.find(params[:id])
-    @game.guess << params[:game][:guess] #game_param
+    @game.guess << (params[:game][:guess]).downcase #game_param
     #@game.turn_count
-    @game.turns =- 1
+    @game.turns -= 1
     @game.save
     @game.game_over
     redirect_to @game
