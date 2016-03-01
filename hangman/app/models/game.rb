@@ -27,4 +27,11 @@ class Game < ActiveRecord::Base
     ans.chars.all? { |c| guess.include?(c) }
   end
 
+#TODO: finish this piece... but first... need validation piece working
+#since it's contingient.
+  def turn_count
+    #self.turns =- 1 unless self.answer.include?(need from validation piece, guess
+    #from post param form b4 post param is potientially stored in the db)
+  end
+
 end
