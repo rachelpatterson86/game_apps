@@ -1,28 +1,37 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I create RoR games. Currently, I am converting my terminal game apps to RoR.
 
-Things you may want to cover:
+As of now, I am working on hangman.
 
-* Ruby version
+The terminal app can be found here:
+https://github.com/rachelpatterson86/ironyard_v2/tree/master/homework_improved
 
-* System dependencies
+*Look for '3_Hangman...' ;)
 
-* Configuration
+Here is my backlog:
 
-* Database creation
+Hangman Features
+1. Play again
+2. Quit game (button)
+3. Save game (button)
+4. Hints enabled (3 max) (give a letter) (button)
+5. See all current games (button)
+6. Errors - bad letter guessed
 
-* Database initialization
+Add Ons:
+1. Text
+-- welcome to hangman! (lets play button)
+-- Win/Lose message
+2. Images
+-- Ascii
+	-- hangman status
+	-- Word/ Spaces display_partial_word
+3. Improvements
+-- word > 5 letters long
+-- cant enable hints if only 1 letter to guess
+-- Errors - bad letter guessed
+-- js the guess part
+-- remove welcome controller
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
