@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   def index
+    @game = Game.all
   end
 
   def create
@@ -27,12 +28,6 @@ class GamesController < ApplicationController
     @guesses = @game.guess.dup
     @game.guess.clear
     @partial_word = @game.display_partial_word(answer, @guesses)
-  end
-
-  def delete
-    @game = Game.find(params[:id])
-    @game.destroy
-    redirect_to root_path
   end
 
 end

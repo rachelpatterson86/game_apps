@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :games
-  root 'welcome#index'
+  root 'games#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
